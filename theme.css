@@ -1,0 +1,519 @@
+/*
+  Borozdov Terracotta — an Obsidian theme from the Borozdov collection.
+  Two faces: Cinnamon (light, a warm parchment notebook — cream paper,
+  a single terracotta pen stroke, indigo and green asides) and
+  Firebrick (dark, the same notebook by lamplight — a charred-umber
+  page, the same pen still terracotta). Style source: Refero #20 Slite,
+  "Warm parchment notebook".
+  https://github.com/borozdov-obsidian-themes/terracotta
+
+  License: MIT (this file). No embedded fonts.
+*/
+
+/* ===== 1. PALETTE =====
+   Only these values differ by face. Cream paper (Cinnamon) or charred
+   umber (Firebrick) for the canvas, a half-step-darker card surface for
+   chips and secondary panels, a hairline for every rim. Terracotta —
+   the card's own Ember Orange — is the single saturated accent on both
+   faces: the pen stroke, the filled button, the one place the page
+   asks for attention. Indigo and green ride along as quieter asides in
+   code, tags and callouts, never on the accent itself. */
+
+.theme-light {
+  color-scheme: light;
+
+  --canvas: #fdf9f4;
+  --mist: #f9efe4;
+  --panel: #fff;
+  --edge: #d9dde6;
+  --hairline: #2d2f341f;
+  --veil: #2d2f340d;
+  --veil-strong: #2d2f3414;
+  --mark: #f6774833;
+  --scrim: #2d2f3480;
+  --faint: #9da3af;
+  --muted: #5e646e;
+  --ink: #2d2f34;
+  --press: #f67748;
+  --on-press: #2d2f34;
+  --accent-h: 16;
+  --accent-s: 91%;
+  --accent-l: 62%;
+  --shadow-card: 0 1px 3px rgb(45 31 20 / 10%), 0 2px 6px rgb(45 31 20 / 5%),
+    0 4px 12px rgb(45 31 20 / 1%);
+  --color-red: #b3402e;
+  --color-orange: #a1451f;
+  --color-yellow: #8a6a2a;
+  --color-green: #357a42;
+  --color-cyan: #237077;
+  --color-blue: #3f66b8;
+  --color-purple: #4b51c3;
+  --color-pink: #a13a67;
+  --color-red-rgb: 179, 64, 46;
+  --color-orange-rgb: 161, 69, 31;
+  --color-yellow-rgb: 138, 106, 42;
+  --color-green-rgb: 53, 122, 66;
+  --color-cyan-rgb: 35, 112, 119;
+  --color-blue-rgb: 63, 102, 184;
+  --color-purple-rgb: 75, 81, 195;
+  --color-pink-rgb: 161, 58, 103;
+  --code-comment: var(--faint);
+  --code-function: var(--ink);
+  --code-keyword: var(--color-purple);
+  --code-operator: var(--muted);
+  --code-property: var(--ink);
+  --code-punctuation: var(--faint);
+  --code-string: var(--color-green);
+  --code-tag: var(--color-orange);
+  --code-value: var(--color-blue);
+  --code-important: var(--color-red);
+}
+
+.theme-dark {
+  color-scheme: dark;
+
+  --canvas: #1f150f;
+  --mist: #2b1e16;
+  --panel: #251811;
+  --edge: #4a382c;
+  --hairline: #f2ece21f;
+  --veil: #f2ece20f;
+  --veil-strong: #f2ece21a;
+  --mark: #5a3420;
+  --scrim: #000000a6;
+  --faint: #8f8070;
+  --muted: #c9c0b4;
+  --ink: #f2ece2;
+  --press: #f67748;
+  --on-press: #1f150f;
+  --accent-h: 16;
+  --accent-s: 91%;
+  --accent-l: 62%;
+  --shadow-card: 0 1px 3px rgb(0 0 0 / 30%), 0 2px 6px rgb(0 0 0 / 20%),
+    0 4px 16px rgb(0 0 0 / 15%);
+  --color-red: #ff9c8f;
+  --color-orange: #ffab7e;
+  --color-yellow: #e8cf7a;
+  --color-green: #8fd6a8;
+  --color-cyan: #7ed3de;
+  --color-blue: #a6acf0;
+  --color-purple: #c3b3ff;
+  --color-pink: #f2a8c9;
+  --color-red-rgb: 255, 156, 143;
+  --color-orange-rgb: 255, 171, 126;
+  --color-yellow-rgb: 232, 207, 122;
+  --color-green-rgb: 143, 214, 168;
+  --color-cyan-rgb: 126, 211, 222;
+  --color-blue-rgb: 166, 172, 240;
+  --color-purple-rgb: 195, 179, 255;
+  --color-pink-rgb: 242, 168, 201;
+  --code-comment: var(--faint);
+  --code-function: var(--ink);
+  --code-keyword: var(--color-purple);
+  --code-operator: var(--muted);
+  --code-property: var(--ink);
+  --code-punctuation: var(--faint);
+  --code-string: var(--color-green);
+  --code-tag: var(--color-orange);
+  --code-value: var(--color-blue);
+  --code-important: var(--color-red);
+}
+
+/* ===== 2. TYPE & SHAPE =====
+   The platform's own sans, no embedded font. Headings run bold where
+   Slite's Garnett would — the sans carries the headline's weight
+   instead of a serif's shape. Cards round generously (Slite's own
+   32px feature cards), buttons and tags are full pills. */
+
+body {
+  --font-interface-theme: system-ui, -apple-system, "BlinkMacSystemFont",
+    "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-text-theme: system-ui, -apple-system, "BlinkMacSystemFont",
+    "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-monospace-theme: "SFMono-Regular", "SF Mono", "JetBrains Mono",
+    ui-monospace, "Menlo", "Consolas", monospace;
+  --line-height-normal: 1.6;
+  --bold-weight: 700;
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 20px;
+  --radius-xl: 28px;
+  --input-radius: 10px;
+  --button-radius: 999px;
+  --checkbox-radius: 6px;
+  --checkbox-marker-color: var(--on-press);
+  --input-shadow: none;
+  --input-shadow-hover: none;
+  --h1-size: 2.25em; --h2-size: 1.75em; --h3-size: 1.4em;
+  --h4-size: 1.15em; --h5-size: 1em; --h6-size: 0.9em;
+  --h1-weight: 700; --h2-weight: 700; --h3-weight: 700;
+  --h4-weight: 600; --h5-weight: 600; --h6-weight: 500;
+  --inline-title-size: 2.5em;
+  --inline-title-weight: 700;
+  --h1-line-height: 1.15; --h2-line-height: 1.2; --h3-line-height: 1.3;
+  --h4-line-height: 1.35; --h5-line-height: 1.4; --h6-line-height: 1.4;
+  --h1-color: var(--ink); --h2-color: var(--ink); --h3-color: var(--ink);
+  --h4-color: var(--ink); --h5-color: var(--muted); --h6-color: var(--faint);
+}
+
+/* ===== 3. BASE VARIABLE MAPPING =====
+   Set on .theme-dark / .theme-light, where Obsidian declares them too;
+   the theme loads later and wins the tie. */
+
+.theme-dark,
+.theme-light {
+  --background-primary: var(--canvas);
+  --background-primary-alt: var(--mist);
+  --background-secondary: var(--mist);
+  --background-secondary-alt: var(--canvas);
+  --background-modifier-hover: var(--veil);
+  --background-modifier-active-hover: var(--veil-strong);
+  --background-modifier-border: var(--hairline);
+  --background-modifier-border-hover: var(--edge);
+  --background-modifier-border-focus: var(--press);
+  --background-modifier-form-field: var(--mist);
+  --text-normal: var(--ink);
+  --text-muted: var(--muted);
+  --text-faint: var(--faint);
+  --text-accent: var(--press);
+  --text-accent-hover: var(--press);
+  --text-on-accent: var(--on-press);
+  --text-on-accent-inverted: var(--on-press);
+  --text-selection: var(--veil-strong);
+  --text-highlight-bg: var(--mark);
+  --color-accent: var(--press);
+  --color-accent-1: var(--press);
+  --color-accent-2: var(--press);
+  --interactive-accent: var(--press);
+  --interactive-accent-hover: var(--press);
+  --interactive-normal: var(--mist);
+  --interactive-hover: var(--veil);
+  --divider-color: var(--hairline);
+  --caret-color: var(--press);
+  --tab-container-background: var(--mist);
+  --titlebar-background: var(--mist);
+  --titlebar-background-focused: var(--mist);
+  --ribbon-background: var(--mist);
+  --ribbon-background-collapsed: var(--canvas);
+  --status-bar-background: var(--mist);
+  --nav-item-background-hover: var(--veil);
+  --nav-item-background-active: var(--veil-strong);
+  --nav-item-color-active: var(--ink);
+  --nav-item-background-selected: var(--veil);
+  --nav-item-color-selected: var(--ink);
+  --nav-indentation-guide-color: var(--hairline);
+  --callout-default: var(--muted);
+  --callout-info: var(--color-blue);
+  --callout-todo: var(--color-purple);
+  --callout-summary: var(--color-cyan);
+  --callout-tip: var(--color-green);
+  --callout-important: var(--color-red);
+  --callout-success: var(--color-green);
+  --callout-question: var(--color-purple);
+  --callout-warning: var(--color-yellow);
+  --callout-fail: var(--color-red);
+  --callout-error: var(--color-red);
+  --callout-bug: var(--color-pink);
+  --callout-example: var(--press);
+  --callout-quote: var(--muted);
+}
+
+/* Firebrick keeps the highlighter opaque: a translucent wash over the
+   charred-umber canvas would pull it toward olive. Ink is set here for
+   both faces so the mark reads the same warm cream/terracotta ink no
+   matter how it is mixed underneath. */
+.markdown-rendered mark,
+.markdown-rendered mark .internal-link,
+.cm-s-obsidian span.cm-formatting-highlight,
+.cm-s-obsidian span.cm-highlight:not(.obsidian-search-match-highlight) {
+  color: var(--ink);
+}
+
+/* ===== 4. LINKS =====
+   The pen stroke itself: terracotta ink, a hairline under it instead of
+   a full underline, no separate hover color — the stroke doesn't move. */
+
+body {
+  --link-color: var(--press);
+  --link-color-hover: var(--press);
+  --link-external-color: var(--press);
+  --link-external-color-hover: var(--press);
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+  --link-unresolved-color: var(--faint);
+  --link-unresolved-opacity: 1;
+  --link-unresolved-decoration-style: dotted;
+}
+
+.markdown-rendered a.internal-link,
+.markdown-rendered a.external-link,
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link,
+.markdown-source-view.mod-cm6 .cm-link,
+.markdown-source-view.mod-cm6 .cm-url {
+  border-bottom: 1px solid var(--press);
+}
+
+@media (hover: hover) {
+  .markdown-rendered a.internal-link:hover,
+  .markdown-rendered a.external-link:hover {
+    background-color: var(--mark);
+  }
+}
+
+/* ===== 5. CALLOUTS =====
+   Slite's feature-card radius, a hairline rim, no shadow. Colours are
+   left to app.css's own color-mix against --callout-<type>: info runs
+   blue, todo and question run indigo, tip and success run green — the
+   asides the parchment page is built around — while default, example
+   and quote stay on the terracotta pen or a plain grey. */
+
+body {
+  --callout-border-width: 1px;
+  --callout-border-opacity: 1;
+  --callout-radius: 16px;
+  --callout-padding: 1rem 1.25rem;
+  --callout-title-weight: 700;
+  --callout-content-padding: 0.45rem 0 0;
+  --callout-blend-mode: normal;
+}
+
+.callout-content > :first-child { margin-top: 0; }
+.callout-content > :last-child { margin-bottom: 0; }
+
+/* ===== 6. CODE =====
+   A card cut from the same cloth as the page: mist fill, a hairline
+   rim, generous corners. Syntax carries the indigo/green asides. */
+
+body {
+  --code-background: var(--mist);
+  --code-normal: var(--ink);
+  --code-radius: 14px;
+  --code-border-width: 1px;
+  --code-border-color: var(--hairline);
+}
+
+.markdown-rendered pre {
+  border-radius: 14px;
+}
+
+/* ===== 7. BLOCKQUOTE ===== */
+
+body {
+  --blockquote-border-thickness: 3px;
+  --blockquote-border-color: var(--press);
+  --blockquote-color: var(--muted);
+  --blockquote-font-style: normal;
+}
+
+/* ===== 8. TAGS =====
+   Dust-chip pills: mist fill, no rim until the pointer lands, then the
+   terracotta pen underlines the chip instead of inverting it whole. */
+
+body {
+  --tag-size: 0.78em;
+  --tag-weight: 600;
+  --tag-radius: 999px;
+  --tag-padding-x: 0.75em;
+  --tag-padding-y: 0.24em;
+  --tag-border-width: 1px;
+  --tag-border-color: transparent;
+  --tag-border-color-hover: var(--press);
+  --tag-color: var(--muted);
+  --tag-color-hover: var(--press);
+  --tag-background: var(--mist);
+  --tag-background-hover: var(--mist);
+  --tag-decoration-hover: none;
+}
+
+/* ===== 9. TABLES =====
+   The table draws its own frame — a hairline rim and rounded corners —
+   so the four inner-edge widths below must be zeroed or app.css doubles
+   the frame with its own per-cell border rules. */
+
+body {
+  --table-border-width: 1px;
+  --table-column-first-border-width: 0;
+  --table-column-last-border-width: 0;
+  --table-header-border-width: 0;
+  --table-row-last-border-width: 0;
+  --table-border-color: var(--hairline);
+  --table-header-background: var(--mist);
+  --table-header-background-hover: var(--veil);
+  --table-header-border-color: var(--hairline);
+  --table-header-size: 0.75em;
+  --table-header-weight: 700;
+  --table-header-color: var(--muted);
+  --table-row-background-hover: var(--mist);
+  --table-row-alt-background: transparent;
+  --table-row-alt-background-hover: var(--mist);
+}
+
+.markdown-rendered table {
+  background-color: var(--panel);
+  border: var(--table-border-width) solid var(--table-border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* The frame belongs to the table so it follows the corners; cells draw only
+   the inner grid, an end and a bottom line, none on the outer edges. */
+.markdown-rendered th,
+.markdown-rendered td {
+  border-block-start-width: 0;
+  border-inline-start-width: 0;
+}
+
+.markdown-rendered tr > :last-child {
+  border-inline-end-width: 0;
+}
+
+.markdown-rendered table > :last-child > tr:last-child > * {
+  border-block-end-width: 0;
+}
+
+/* ===== 10. BUTTONS =====
+   Slite's own ghost-and-outlined pill: a mist pill with a hairline rim,
+   and the filled terracotta pill for the one action that matters. */
+
+button:not(.clickable-icon, .copy-code-button) {
+  background-color: var(--mist);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  box-shadow: none;
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0 1.2em;
+}
+
+@media (hover: hover) {
+  button:not(.clickable-icon, .copy-code-button):hover {
+    background-color: var(--veil-strong);
+    border-color: var(--edge);
+  }
+}
+
+button.mod-cta:not(.clickable-icon, .copy-code-button) {
+  background-color: var(--press);
+  border-color: var(--press);
+  color: var(--on-press);
+  padding: 0 1.4em;
+}
+
+@media (hover: hover) {
+  button.mod-cta:not(.clickable-icon, .copy-code-button):hover {
+    background-color: var(--press);
+    border-color: var(--press);
+    opacity: 0.85;
+  }
+}
+
+/* ===== 11. FIELDS & PROPERTIES ===== */
+
+select.dropdown, input[type="text"], input[type="search"], input[type="number"],
+textarea {
+  /* background-color, not the `background` shorthand: the shorthand resets
+     the dropdown's own arrow image. */
+  background-color: var(--background-modifier-form-field);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+}
+
+select.dropdown:focus, input:focus, textarea:focus,
+select.dropdown:focus-visible, input:focus-visible, textarea:focus-visible {
+  border-color: var(--press);
+  box-shadow: none;
+}
+
+/* A property's key is a label, not a field. input.* matches the frame rule
+   above at (0,1,1), so the element prefix is needed to win it. */
+input.metadata-property-key-input {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--muted);
+}
+
+body {
+  --pill-background: transparent;
+  --pill-background-hover: var(--mist);
+  --pill-border-color: var(--hairline);
+  --pill-border-color-hover: var(--press);
+  --pill-color: var(--muted);
+  --pill-color-hover: var(--press);
+}
+
+/* Cinnamon reads a white toggle thumb against a pale dust track as
+   nearly invisible; Firebrick's cream ink already carries against the
+   charred-umber track. Each face gets its own ink, not the default
+   white. */
+.theme-light {
+  --toggle-thumb-color: var(--ink);
+}
+
+.theme-dark {
+  --toggle-thumb-color: var(--ink);
+}
+
+/* ===== 12. SURFACES =====
+   The card's own White Product elevation: a hairline rim plus the soft
+   shadow the style card gives its raised surfaces. */
+
+.modal-bg {
+  background-color: var(--scrim);
+}
+
+.modal, .menu, div.popover, .suggestion-container, .prompt {
+  background-color: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+/* Obsidian pads an embed only on the left, for an accent bar this theme
+   doesn't draw. Even padding all round, with room for the open-link icon. */
+body {
+  --embed-padding: var(--size-4-3) var(--size-4-8) var(--size-4-3) var(--size-4-4);
+  --embed-border-start: none;
+}
+
+.markdown-embed {
+  background-color: var(--mist);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+}
+
+/* A hover preview is already a panel: the embed inside it stays flat. */
+.popover.hover-popover > .markdown-embed {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+hr, .cm-hr { border-color: var(--edge); }
+
+/* ===== 13. MOBILE =====
+   The phone layout re-declares tag and field colors on .is-mobile.theme-*,
+   outranking the rules above; the same selectors bring them back. */
+
+.is-mobile.theme-dark,
+.is-mobile.theme-light {
+  --tag-background: var(--mist);
+  --background-modifier-form-field: var(--mist);
+  --background-modifier-hover: var(--veil);
+}
+
+/* ===== 14. REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    --anim-duration-superfast: 0s;
+    --anim-duration-fast: 0s;
+    --anim-duration-moderate: 0s;
+    --anim-duration-slow: 0s;
+  }
+}
