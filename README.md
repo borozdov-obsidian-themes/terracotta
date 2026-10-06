@@ -37,10 +37,14 @@ Cream paper, a single terracotta accent, indigo and green riding along as quiete
 
 ## Installation
 
-**From the community directory:** Settings → Appearance → Themes → Manage, search for
-**Borozdov Terracotta**, then **Install and use**.
+**From the community directory, as a variant:** this theme ships inside **Borozdov
+Ember**. Install Borozdov Ember under Settings → Appearance → Themes → Manage, then the
+[Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin, and choose
+**Terracotta** under Style Settings → Borozdov Ember → Variant. The variant brings this
+theme's palette, type and corners; its own layout, and its embedded font if it has one,
+come with the full theme below.
 
-**By hand:** download `manifest.json` and `theme.css` from the
+**The full theme, by hand:** download `manifest.json` and `theme.css` from the
 [latest release](https://github.com/borozdov-obsidian-themes/terracotta/releases/latest) into
 `<vault>/.obsidian/themes/Borozdov Terracotta/`, then choose Borozdov Terracotta under
 Settings → Appearance → Themes.
@@ -54,5 +58,4 @@ MIT — see [LICENSE](LICENSE).
 **По-русски.** Тема из коллекции Borozdov. Два лика: светлый «Cinnamon» — тёплый блокнот
 на пергаментной бумаге с терракотовым пером, и тёмный «Firebrick» — тот же блокнот при
 свете лампы. Кремовая бумага, один терракотовый акцент, индиго и зелёный — как тихие
-дополнительные голоса. Шрифты не встроены. Устанавливается из каталога: Настройки →
-Оформление → Темы → Настроить → Borozdov Terracotta → Установить и применить.
+дополнительные голоса. Шрифты не встроены. В каталоге тема живёт вариантом Borozdov Ember: установите Borozdov Ember и плагин Style Settings, затем выберите Terracotta в Style Settings → Borozdov Ember → Variant. Целиком, со своей вёрсткой, тема ставится вручную из последнего релиза репозитория.
